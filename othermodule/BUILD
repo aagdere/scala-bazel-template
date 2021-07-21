@@ -4,19 +4,22 @@ load("@rules_intellij_generate//:def.bzl", "intellij_module")
 scala_library(
     name = "othermodule",
     srcs = glob(["src/main/scala/othermodule/*.scala"]),
-    visibility = ["//bazeltest:__pkg__", "//:__pkg__"],
+    visibility = [
+        "//:__pkg__",
+        "//bazeltest:__pkg__",
+    ],
     deps = [],
 )
 
 scala_test(
     name = "tests",
     srcs = ["src/test/scala/othermodule/WorkerSpec.scala"],
-    deps = [":othermodule"],
     visibility = ["//visibility:public"],
+    deps = [":othermodule"],
 )
 
 intellij_module(
-    name="othermodule_iml",
-    iml_type="scala-simple",
+    name = "othermodule_iml",
+    iml_type = "scala-simple",
     visibility = ["//visibility:public"],
 )

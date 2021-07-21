@@ -10,8 +10,7 @@ options:
     - id: "hmrc"
       type: "default"
       url: https://hmrc.bintray.com/releases
-  strictVisibility: true
-  transitivity: runtime_deps
+  transitivity: exports
   versionConflictPolicy: highest
 
 dependencies:
@@ -19,6 +18,18 @@ dependencies:
     akka-http:
       lang: scala
       version: "10.1.7"
+
+  com.typesafe.play:
+    play:
+      lang: scala
+      version: 2.8.0
+      modules: [ '', akka-http-server, guice, logback, streams ]
+    routes-compiler:
+      lang: scala
+      version: 2.8.0
+    filters-helpers:
+      version: 2.8.0
+      lang: scala
 
   com.typesafe.scala-logging:
     scala-logging:
@@ -50,8 +61,7 @@ replacements:
   org.scala-lang.modules:
     scala-parser-combinators:
       lang: scala
-      target:
-        "@io_bazel_rules_scala_scala_parser_combinators//:io_bazel_rules_scala_scala_parser_combinators"
+      target: "@io_bazel_rules_scala_scala_parser_combinators//:io_bazel_rules_scala_scala_parser_combinators"
     scala-xml:
       lang: scala
-      target: "“@io_bazel_rules_scala_scala_xml//:io_bazel_rules_scala_scala_xml\""
+      target: "@io_bazel_rules_scala_scala_xml//:io_bazel_rules_scala_scala_xml"
